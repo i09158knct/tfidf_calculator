@@ -4,7 +4,7 @@ require './tfidf_calculator.rb'
 def calculate_tfidf_of_all_documents(word, data)
   itl = data.get_indexing_terms_list_clone
   results = []
-  itl.keys.each do |file_name|
+  itl.each_key do |file_name|
     results  << [data.tfidf(word, file_name), file_name]
   end
   return results

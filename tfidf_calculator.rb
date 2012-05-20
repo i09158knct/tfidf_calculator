@@ -20,7 +20,7 @@ class TFIDFCalculator
 
   def idf(word)
     matched_file_count = 0
-    @indexing_terms_list.values.each do |indexing_terms|
+    @indexing_terms_list.each_value do |indexing_terms|
       matched_file_count += 1 if indexing_terms.index(word)
     end
     return (matched_file_count != 0) ?
