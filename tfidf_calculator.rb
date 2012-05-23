@@ -37,11 +37,9 @@ class TFIDFCalculator
   def create_indexing_terms_list(dir_path)
     indexing_terms_list = Hash.new
     Dir::foreach(dir_path) do |file_name|
-      begin
-        indexing_terms_list[file_name] =
-          create_indexing_terms "#{dir_path}/#{file_name}"
-      rescue Errno::EISDIR # ディレクトリは無視する
-      end
+      next if File.directory? file_name #ディレクトリは無視する
+      indexing_terms_list[file_name] =
+        create_indexing_terms "#{dir_path}/#{file_name}"
     end
     return indexing_terms_list
   end
